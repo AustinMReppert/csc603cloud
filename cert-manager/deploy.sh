@@ -10,6 +10,6 @@ sed -i "s/MYDOMAIN/$(hostname -f)/g" default-cluster-issuer.yml
 sed -i "s/MYUSER/$(echo $USER)/g" default-cluster-issuer.yml
 kubectl apply -f default-cluster-issuer.yml
 
-cp /local/repository/cert-manager/default-cert.yml default-cert.yml.bak
+cp /local/repository/cert-manager/default-cert.yml .
 sed -i "s/MYDOMAIN/$(hostname -f)/g" default-cert.yml
 kubectl apply -f default-cert.yml
