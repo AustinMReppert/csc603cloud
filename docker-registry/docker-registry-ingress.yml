@@ -1,0 +1,40 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: docker-registry-middleware
+  namespace: default
+spec:
+  replacePathRegex:
+    regex: ^/docker-registry/?(.*)
+    replacement: /$1
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: docker-registry
+  namespace: docker-registry
+  annotations:
+    cert-manager.io/cluster-issuer: default-cluster-issuer
+    traefik.ingress.kubernetes.io/router.middlewares: default-docker-registry-middleware@kubernetescrd
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /docker-registry
+            pathType: Prefix
+            backend:
+              service:
+                name: docker-registry
+                port:
+                  number: 5000
+          - path: /v2
+            pathType: Prefix
+            backend:
+              service:
+                name: docker-registry
+                port:
+                  number: 5000
+  tls:
+    - hosts:
+        - MYDOMAIN
+      secretName: default-cert

@@ -1,14 +1,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: MYDOMAIN-cert
+  name: default-cert
   namespace: default
 spec:
-  secretName: MYDOMAIN-cert-secret
-  isCA: true
-  commonName: 'MYDOMAIN'
+  secretName: default-cert-secret
   dnsNames:
     - MYDOMAIN
   issuerRef:
-    name: k8s-ca-issuer
+    name: default-cluster-issuer
     kind: ClusterIssuer
