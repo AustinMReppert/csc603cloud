@@ -8,6 +8,9 @@ export KUBEHEAD=$(kubectl get nodes -o custom-columns=NAME:.status.addresses[1].
 cp /local/repository/jenkins/jenkins-values.yml .
 sed -i "s/KUBEHEAD/${KUBEHEAD}/g" jenkins-values.yml
 sed -i "s/MYDOMAIN/$(hostname -f)/g" jenkins-values.yml
-helm install --namespace jenkins --create-namespace  --version 4.2.15 -f jenkins-values.yml jenkins jenkins/jenkins
+sed -i "s@DOCKER_REGISTRY_VALUE@$DOCKER_REGISTRY@g" jenkins-values.yml 
+sed -i "s/DOCKER_USER_VALUE/$DOCKER_USER/g" jenkins-values.yml
+sed -i "s/DOCKER_PASSWORD_VALUE/$DOCKER_PASSWORD/g" jenkins-values.yml
+helm install --namespace jenkins --create-namespace --version 4.2.15 -f jenkins-values.yml jenkins jenkins/jenkins
 
 

@@ -826,14 +826,14 @@ agent:
             resourceLimitMemory: "1024Mi"
             envVars:
               - containerEnvVar:
-                  key: "DOCKER_TOKEN"
-                  value: "DOCKER_TOKEN_VALUE"
-              - containerEnvVar:
                   key: "DOCKER_REGISTRY"
                   value: "DOCKER_REGISTRY_VALUE"
               - containerEnvVar:
                   key: "DOCKER_USER"
                   value: "DOCKER_USER_VALUE"
+              - containerEnvVar:
+                  key: "DOCKER_PASSWORD"
+                  value: "DOCKER_PASSWORD_VALUE"
         volumes:
           - hostPathVolume:
               hostPath: "/var/run/docker.sock"
