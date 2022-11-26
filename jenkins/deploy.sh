@@ -12,4 +12,5 @@ sed -i "s/CLUSTER_USER_VALUE/$USER/g" jenkins-values.yml
 sed -i "s@DOCKER_REGISTRY_VALUE@$DOCKER_REGISTRY@g" jenkins-values.yml 
 sed -i "s/DOCKER_USER_VALUE/$DOCKER_USER/g" jenkins-values.yml
 sed -i "s/DOCKER_PASSWORD_VALUE/$DOCKER_PASSWORD/g" jenkins-values.yml
+sed -i "s/CLUSTER_SSH_KEY/$(cat /users/$USER/.ssh/id_rsa.pub)/g" jenkins-values.yml
 helm install --namespace jenkins --create-namespace --version 4.2.15 -f jenkins-values.yml jenkins jenkins/jenkins

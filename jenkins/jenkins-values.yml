@@ -332,6 +332,19 @@ controller:
                 value: "MYDOMAIN"
               - key: "CLUSTER_USER"
                 value: "CLUSTER_USER_VALUE"
+      add-ssh-creds-for-cluster: |
+        credentials:
+          system:
+            domainCredentials:
+              - credentials:
+                  - basicSSHUserPrivateKey:
+                      scope: GLOBAL
+                      id: cloudlab
+                      username: CLUSTER_USER_VALUE
+                      description: "SSH key for the cluster."
+                      privateKeySource:
+                        directEntry:
+                          privateKey: "CLUSTER_SSH_KEY"
     # Allows adding to the top-level security JCasC section. For legacy,  default the chart includes apiToken configurations
     security:
       apiToken:
