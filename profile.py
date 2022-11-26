@@ -81,7 +81,7 @@ for i in range(num_nodes):
   else:
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/kube_worker.sh"))
   
-  node.addService(pg.Execute(shell="sh", command="echo \"export DOCKER_USER=" + params.registry_user + "\" | sudo tee -a /users/" + params.userid + "/docker-vars.sh"))
-  node.addService(pg.Execute(shell="sh", command="echo \"export DOCKER_PASSWORD=" + params.registry_password + "\" | sudo tee -a /users/" + params.userid + "/docker-vars.sh"))
+  node.addService(pg.Execute(shell="sh", command="set -x; echo \"export DOCKER_USER=" + params.registry_user + "\" | sudo tee -a /users/" + params.userid + "/docker-vars.sh"))
+  node.addService(pg.Execute(shell="sh", command="set -x; echo \"export DOCKER_PASSWORD=" + params.registry_password + "\" | sudo tee -a /users/" + params.userid + "/docker-vars.sh"))
 
 pc.printRequestRSpec(request)
