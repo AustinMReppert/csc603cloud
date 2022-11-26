@@ -80,8 +80,8 @@ for i in range(num_nodes):
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_helm.sh"))
   else:
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/kube_worker.sh"))
-
-  node.addService(pg.Execute(shell="sh", command=f"export DOCKER_USER={params.registry_user}")
-  node.addService(pg.Execute(shell="sh", command=f"export DOCKER_PASSWORD={params.registry_password}")
+  
+  node.addService(pg.Execute(shell="sh", command="export DOCKER_USER=" + params.registry_user))
+  node.addService(pg.Execute(shell="sh", command="export DOCKER_PASSWORD=" + params.registry_password))
 
 pc.printRequestRSpec(request)
