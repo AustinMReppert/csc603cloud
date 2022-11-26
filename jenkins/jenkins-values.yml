@@ -330,6 +330,8 @@ controller:
               env:
               - key: "CLUSTER_HOST"
                 value: "MYDOMAIN"
+              - key: "DOCKER_REGISTRY"
+                value: "DOCKER_REGISTRY_VALUE"
               - key: "CLUSTER_USER"
                 value: "CLUSTER_USER_VALUE"
       add-ssh-creds-for-cluster: |

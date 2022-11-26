@@ -1,0 +1,2 @@
+docker login -u $DOCKER_USER -p $DOCKER_PASSWORD $DOCKER_REGISTRY
+kubectl create secret generic regcred --from-file=.dockerconfigjson=/users/${USER}/.docker/config.json --type=kubernetes.io/dockerconfigjson
