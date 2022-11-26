@@ -15,6 +15,12 @@ pc.defineParameter( "corecount",
                    portal.ParameterType.INTEGER, 4 )
 pc.defineParameter( "ramsize", "MB of RAM in each node (8192 or more).  NB: Make certain your requested cluster can supply this quantity.", 
                    portal.ParameterType.INTEGER, 8192 )
+pc.defineParameter( "registry_user", 
+                   "Docker registry user id.", 
+                   portal.ParameterType.STRING, 'admin' )
+pc.defineParameter( "registry_password", 
+                   "Docker registry user password.", 
+                   portal.ParameterType.STRING, 'password' )
 params = pc.bindParameters()
 
 request = pc.makeRequestRSpec()
@@ -74,5 +80,8 @@ for i in range(num_nodes):
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/install_helm.sh"))
   else:
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/kube_worker.sh"))
-    
+
+  node.addService(pg.Execute(shell="sh", command=f"export DOCKER_USER={params.registry_user}")
+  node.addService(pg.Execute(shell="sh", command=f"export DOCKER_PASSWORD={params.registry_password}")
+
 pc.printRequestRSpec(request)
