@@ -53,13 +53,13 @@ for i in range(num_nodes):
   if i == 0:
     node = request.XenVM("head")
     bs_landing = node.Blockstore("bs_image", "/image")
-    bs_landing.size = "500GB"
+    bs_landing.size = "100GB"
   else:
     node = request.XenVM("worker-" + str(i))
   node.cores = params.corecount
   node.ram = params.ramsize
   bs_landing = node.Blockstore("bs_" + str(i), "/image")
-  bs_landing.size = "500GB"
+  bs_landing.size = "100GB"
   node.routable_control_ip = "true" 
   node.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:UBUNTU18-64-STD"
   iface = node.addInterface("if" + str(i))
